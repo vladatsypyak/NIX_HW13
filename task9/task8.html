@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="messages.css">
+    <meta charset="utf-8">
+    <title>10</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<p class="toggle opened"><span class="open hidden">▶ </span> <span class="close ">▼ </span> Солодощі (натисни мене)!
+</p>
+<ul>
+    <li> Тістечко</li>
+    <li> Пончик</li>
+    <li> Мед</li>
+</ul>
+
+<script>
+let toggleBtn = document.querySelector(".toggle")
+let open = document.querySelector(".open")
+let close = document.querySelector(".close")
+let list = document.querySelector("ul")
+toggleBtn.addEventListener("click", ()=>{
+    if(toggleBtn.classList.contains("opened")){
+        toggleBtn.classList.remove("opened")
+        open.classList.remove("hidden")
+        close.classList.add("hidden")
+        list.classList.add("hidden")
+    } else{
+        toggleBtn.classList.add("opened")
+        close.classList.remove("hidden")
+        open.classList.add("hidden")
+        list.classList.remove("hidden")
+
+
+    }
+})
+
+</script>
+</body>
+</html>

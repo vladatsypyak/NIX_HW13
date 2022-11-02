@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="messages.css">
+    <meta charset="utf-8">
+    <title>10</title>
+    <style>
+    #field {
+    width: 200px;
+    height: 150px;
+    border: 10px solid black;
+    background-color: #00FF00;
+    overflow: hidden;
+    }
+
+    </style>
+</head>
+<body style="height:2000px">
+Натисніть поле для переміщення м'яча.
+<br> М'яч не повинен виходити за межі поля.
+<div id="field">
+    <img src="https://ru.js.cx/clipart/ball.svg" id="ball"> . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+    . . . . . . . . . . . .
+</div>
+<script>
+    let ball = document.querySelector("#ball")
+    let field = document.querySelector("#field")
+
+    field.addEventListener("click", (e)=>{
+        ball.style.position= "absolute"
+        ball.style.top = (e.clientY - ball.offsetHeight/2)+"px"
+        ball.style.left = (e.clientX - ball.offsetWidth/2)+"px"
+        let fieldCoord = field.getBoundingClientRect()
+         if(e.clientX >= fieldCoord.right - ball.offsetWidth/2 - field.clientLeft){
+             ball.style.left = (fieldCoord.right - ball.offsetWidth - field.clientLeft)+"px"
+         }
+        if(e.clientX <= fieldCoord.left + ball.offsetWidth/2 + field.clientLeft ){
+            ball.style.left = (fieldCoord.left + field.clientLeft)+"px"
+        }
+        let borderBottom = parseFloat(getComputedStyle(field).borderBottomWidth)
+        if(e.clientY >= fieldCoord.bottom - ball.offsetHeight / 2 - borderBottom ){
+            ball.style.top = (fieldCoord.bottom - ball.offsetHeight  - borderBottom)+"px"
+        }
+        if(e.clientY <= fieldCoord.top + ball.offsetHeight / 2 + field.clientTop ){
+            ball.style.top = (fieldCoord.top  + borderBottom)+"px"
+        }
+        ball.style.transition = "all 1s"
+    })
+</script>
+</body>
+</html>

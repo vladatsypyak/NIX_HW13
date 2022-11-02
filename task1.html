@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>calendar</title>
+</head>
+<body>
+<div class="el"></div>
+<style>
+    table{
+    border-collapse: collapse;
+    }
+    td{
+        border: 2px solid black;
+        font-size: 36px;
+    }
+</style>
+<script>
+    let el = document.querySelector(".el")
+
+    function getDaysInMonth(year, month) {
+        return new Date(year, month, 0).getDate();
+    }
+
+    function getHeader() {
+        let th = `<thead>
+<td>пн</td>
+<td>вт</td>
+<td>ср</td>
+<td>чт</td>
+<td>пт</td>
+<td>сб</td>
+<td>нд</td>
+</thead>`
+        return th;
+    }
+
+    function createCalendar(elem, year, month) {
+        let th = getHeader();
+        let date = new Date(year, month - 1)
+        let firstDay = date.getDay()
+        let table = document.createElement("table")
+        table.innerHTML = th
+        let daysInMonth = getDaysInMonth(year,month);
+        let rows = Math.ceil((daysInMonth + firstDay) / 7)
+        let currentCell = 0;
+        let currentDay = 1;
+
+        for (let i = 0; i < rows ; i++) {
+            let tr = `<tr>`
+            for (let j = 0; j < 7; j++) {
+                let td;
+                if(currentCell >= firstDay - 1 && currentCell <= daysInMonth){
+                    td = `<td>${currentDay}</td>`
+                    currentDay++
+                } else {
+                    td = `<td></td>`
+                }
+                tr+=td
+                currentCell++
+            }
+            tr+=`</tr>`
+            table.innerHTML += tr
+
+        }
+
+        el.appendChild(table)
+    }
+
+    createCalendar(el, 2022, 11)
+</script>
+</body>
+</html>

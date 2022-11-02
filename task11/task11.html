@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <link rel="stylesheet" type="text/css" href="messages.css">
+    <meta charset="utf-8">
+    <title>11</title>
+</head>
+<body>
+
+<div>
+    <select id="genres">
+        <option value="rock">Рок</option>
+        <option value="blues" selected>Блюз</option>
+    </select>
+</div>
+<script>
+    let select = document.getElementById("genres")
+    let options = select.options
+    console.log(options[select.selectedIndex].text)
+    console.log(select.value)
+    let newOption = new Option("Класика", "classic", true, true)
+    select.appendChild(newOption)
+</script>
+</body>
+</html>

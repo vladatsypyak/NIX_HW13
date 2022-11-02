@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    function showNotification(options) {
+        let message = document.createElement("div")
+        message.classList.add("notification")
+        if (options.className) {
+            message.classList.add(options.className)
+        }
+        message.innerText = options.html
+        message.style.cssText = `position: absolute; top:${options.top}px; right:${options.right}px`
+        document.body.appendChild(message)
+        // setTimeout(() => {
+        //     message.remove()
+        // }, 1500)
+    }
+
+    showNotification({
+        top: 10, // 10px від верхньої межі вікна (за замовчуванням 0px)
+        right: 10, // 10px від правого краю вікна (за замовчуванням 0px)
+        html: "Hello!", // HTML-повідомлення
+        className: "welcome" // Додатковий клас для div (необов'язково)
+    });
+</script>
+</body>
+</html>
